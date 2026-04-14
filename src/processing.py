@@ -3,4 +3,5 @@ def filter_by_state(data_list: list[dict], state='EXECUTED') -> list[dict]:
     for diction in data_list:
         if diction["state"] == state:
             result_list.append(diction)
-            return result_list
+    return result_list
+
