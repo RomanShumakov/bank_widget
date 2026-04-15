@@ -1,4 +1,3 @@
-
 def get_mask_card_number(card_id: int) -> str:
     """Функция маскировки номера банковской карты"""
     card_id_str = str(card_id)
