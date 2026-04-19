@@ -6,12 +6,13 @@ def test_get_mask_card_number(card_num):
     assert get_mask_card_number(card_num) == "1234 56** **** 4321"
     assert get_mask_card_number(str(card_num)) == "1234 56** **** 4321"
     with pytest.raises(ValueError) as exc_info:
-        get_mask_card_number(1)
+        get_mask_card_number("")
     assert str(exc_info.value) == "Неправильно введен номер банковской карты"
 
 
 def test_get_mask_account(card_id):
     assert get_mask_account(card_id) == "**1234"
     assert get_mask_account(str(card_id)) == "**1234"
-    assert get_mask_account(12345) == "12345"
-    assert get_mask_account("") == ""
+    with pytest.raises(ValueError) as exc_info:
+        get_mask_account("")
+    assert str(exc_info.value) == "Неправильно введен номер банковского счета"

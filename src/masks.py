@@ -17,4 +17,4 @@ def get_mask_account(card_id: Union[int, str]) -> str:
         mask_account = "**" + card_id[-4:]
         return mask_account
     else:
-        return card_id
+        raise ValueError("Неправильно введен номер банковского счета")
