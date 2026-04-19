@@ -10,8 +10,11 @@ def get_mask_card_number(card_id: Union[int, str]) -> str:
         return card_id_str
 
 
-def get_mask_account(card_id: int) -> str:
+def get_mask_account(card_id: Union[int, str]) -> str:
     """Функция маскировки номера банковского счета"""
-    mask_account = "**" + (str(card_id))[-4:]
-
-    return mask_account
+    card_id = str(card_id)
+    if len(card_id) == 20:
+        mask_account = "**" + card_id[-4:]
+        return mask_account
+    else:
+        return card_id
