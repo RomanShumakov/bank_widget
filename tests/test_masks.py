@@ -5,8 +5,9 @@ from src.masks import get_mask_card_number, get_mask_account
 def test_get_mask_card_number(card_num):
     assert get_mask_card_number(card_num) == "1234 56** **** 4321"
     assert get_mask_card_number(str(card_num)) == "1234 56** **** 4321"
-    assert get_mask_card_number(54321) == "54321"
-    assert get_mask_card_number("") == ""
+    with pytest.raises(ValueError) as exc_info:
+        get_mask_card_number(1)
+    assert str(exc_info.value) == "Неправильно введен номер банковской карты"
 
 
 def test_get_mask_account(card_id):
