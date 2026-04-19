@@ -1,8 +1,8 @@
 from typing import Union
 
-def get_mask_card_number(card_id: Union[int, str]) -> str:
+def get_mask_card_number(card_num: Union[int, str]) -> str:
     """Функция маскировки номера банковской карты"""
-    card_id_str = str(card_id)
+    card_id_str = str(card_num)
     if len(card_id_str) == 16:
         mask_card_number = card_id_str[:4] + " " + card_id_str[4:6] + "** **** " + card_id_str[-4:]
         return mask_card_number

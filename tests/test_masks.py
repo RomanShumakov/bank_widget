@@ -9,7 +9,6 @@ def test_get_mask_card_number(card_num):
     assert get_mask_card_number("") == ""
 
 
-
 def test_get_mask_account(card_id):
     assert get_mask_account(card_id) == "**1234"
     assert get_mask_account(str(card_id)) == "**1234"
