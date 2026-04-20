@@ -9,3 +9,13 @@ import pytest
                           ("Счет 11111222223333344444", "Счет **4444")])
 def test_mask_account_card(card_id, result):
     assert mask_account_card(card_id) == result
+
+
+def test_get_date():
+    assert get_date("2026-04-20-some_info 09:00:13") == "20.04.2026"
+    with pytest.raises(ValueError) as e:
+        get_date("2025-13-01")
+    assert str(e.value) == "Недопустимае данные для даты"
+    with pytest.raises(ValueError) as e:
+        get_date("roll-in-bed")
+    assert str(e.value) == "Недопустимый формат ввода"

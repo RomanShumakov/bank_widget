@@ -22,5 +22,10 @@ def get_date(date: str) -> str:
     """Функция изменения формата даты"""
 
     inverted_date = date[:10].split("-")
+    if any(not part.isdigit() for part in inverted_date[:3]):
+        raise ValueError("Недопустимый формат ввода")
+
+    if not (1 <= int(inverted_date[2]) <= 31) or not (1 <= int(inverted_date[1]) <= 12) or len(inverted_date[0]) != 4:
+        raise ValueError("Недопустимае данные для даты")
     formated_date = f"{inverted_date[2]}.{inverted_date[1]}.{inverted_date[0]}"
     return formated_date
