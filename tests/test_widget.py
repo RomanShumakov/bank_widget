@@ -1,4 +1,5 @@
 import pytest
+from typing import Union
 
 from src.widget import get_date, mask_account_card
 
@@ -16,12 +17,12 @@ from src.widget import get_date, mask_account_card
         ("Счет 11111222223333344444", "Счет **4444"),
     ],
 )
-def test_mask_account_card(card_id, result):
+def test_mask_account_card(card_id: Union[int, str], result: str) -> None:
     """Функция тестирует mask_account_card с помощью параметризации нескольких входных и выходных данных"""
     assert mask_account_card(card_id) == result
 
 
-def test_get_date():
+def test_get_date() -> None:
     """Функция тестирует различные поведения get_date в зависсимости от различных входных данных"""
     assert get_date("2026-04-20-some_info 09:00:13") == "20.04.2026"
     with pytest.raises(ValueError) as e:
