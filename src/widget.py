@@ -1,17 +1,15 @@
-from typing import Union
-
 from src.masks import get_mask_account, get_mask_card_number
 
 
-def mask_account_card(card: Union[int, str]) -> str:
+def mask_account_card(card: int | str) -> str:
     """Функция обработки информации как о картах, так и о счетах"""
     card = str(card)
-    splited_card = card.split()
+    splited_card = card.rsplit(' ', maxsplit=1)
     words_list = []
     for word in splited_card:
         if word.isdigit() and len(word) == 16:
             word = get_mask_card_number(word)
-        if word.isdigit() and len(word) == 20:
+        elif word.isdigit() and len(word) == 20:
             word = get_mask_account(word)
 
         words_list.append(word)
