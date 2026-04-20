@@ -22,3 +22,27 @@ def test_filter_by_state(list_of_dicts):
 ])
 def test_filter_by_state_parametrize(inputed, state, outputed):
     assert filter_by_state(inputed, state) == outputed
+
+
+def test_sort_by_date(list_of_dicts):
+    assert sort_by_date(list_of_dicts, turn_of_sort=False) == [
+        {"name": "GOLD", "state": "EXECUTED", "date": "2020-01-01-23-00-00"},
+        {"name": "AAPL", "state": "CANCELED", "date": "2025-01-20-23-00-00"},
+        {"name": "MOEX", "state": "EXECUTED", "date": "2026-03-01-09-00-09"},
+        {"name": "MOEX", "state": "CANCELED", "date": "2026-04-20-12-00-00"}
+    ]
+
+    assert sort_by_date(list_of_dicts) == [
+        {"name": "MOEX", "state": "CANCELED", "date": "2026-04-20-12-00-00"},
+        {"name": "MOEX", "state": "EXECUTED", "date": "2026-03-01-09-00-09"},
+        {"name": "AAPL", "state": "CANCELED", "date": "2025-01-20-23-00-00"},
+        {"name": "GOLD", "state": "EXECUTED", "date": "2020-01-01-23-00-00"}]
+
+
+def test_sort_by_date_duplicate():
+    assert sort_by_date([{"name": "AAPL", "state": "CANCELED", "date": "2025-01-20-23-00-00"},
+                         {"name": "MOEX", "state": "CANCELED", "date": "2026-04-20-12-00-00"},
+                         {"name": "GOLD", "state": "EXECUTED", "date": "2025-01-20-23-00-00"}]) == [
+               {"name": "MOEX", "state": "CANCELED", "date": "2026-04-20-12-00-00"},
+               {"name": "AAPL", "state": "CANCELED", "date": "2025-01-20-23-00-00"},
+               {"name": "GOLD", "state": "EXECUTED", "date": "2025-01-20-23-00-00"}]
