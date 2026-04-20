@@ -4,7 +4,7 @@ from src.processing import filter_by_state, sort_by_date
 
 
 def test_filter_by_state(list_of_dicts: list[dict]) -> None:
-    """Функция тестирует поведение filter_by_state в зависсимости от различных значений state при неизменной фикстуре list_of_dicts"""
+    """Функция тестирует поведение filter_by_state в зависсимости от различных значений state"""
     assert filter_by_state(list_of_dicts, state="CANCELED") == [
         {"name": "MOEX", "state": "CANCELED", "date": "2026-04-20-12-00-00"},
         {"name": "AAPL", "state": "CANCELED", "date": "2025-01-20-23-00-00"},
@@ -68,7 +68,7 @@ def test_sort_by_date_duplicate() -> None:
 
 
 def test_sort_by_date_uncorrect() -> None:
-    """Функция проверяет устойчивость сортировки sort_by_date некорректными форматами дат """
+    """Функция проверяет устойчивость сортировки sort_by_date некорректными форматами дат"""
     assert sort_by_date(
         [
             {"name": "AAPL", "state": "CANCELED", "date": "2025-13-46-3000-00-00"},
