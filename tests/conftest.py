@@ -13,7 +13,9 @@ def card_id():
 
 @pytest.fixture
 def list_of_dicts():
-    return [{"name": "MOEX", "state": "CANCELED", "date": "2026-04-20-12-00-00"},
-            {"name": "AAPL", "state": "CANCELED", "date": "2025-01-20-23-00-00"},
-            {"name": "MOEX", "state": "EXECUTED", "date": "2026-03-01-09-00-09"},
-            {"name": "GOLD", "state": "EXECUTED", "date": "2020-01-01-23-00-00"}]
+    return [
+        {"name": "MOEX", "state": "CANCELED", "date": "2026-04-20-12-00-00"},
+        {"name": "AAPL", "state": "CANCELED", "date": "2025-01-20-23-00-00"},
+        {"name": "MOEX", "state": "EXECUTED", "date": "2026-03-01-09-00-09"},
+        {"name": "GOLD", "state": "EXECUTED", "date": "2020-01-01-23-00-00"},
+    ]
