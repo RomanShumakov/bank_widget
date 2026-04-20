@@ -1,6 +1,24 @@
 from src.processing import filter_by_state, sort_by_date
+import pytest
 
 
 def test_filter_by_state(list_of_dicts):
-    assert filter_by_state(list_of_dicts, state="CANCELED") == [{"name": "MOEX", "state": "CANCELED", "date": "2026-04-20-12-00-00"}]
-    assert filter_by_state(list_of_dicts) == [{"name": "MOEX", "state": "EXECUTED", "date": "2026-03-01-09-00-09"}]
+    assert filter_by_state(list_of_dicts, state="CANCELED") == [
+        {"name": "MOEX", "state": "CANCELED", "date": "2026-04-20-12-00-00"},
+        {"name": "AAPL", "state": "CANCELED", "date": "2025-01-20-23-00-00"}]
+
+    assert filter_by_state(list_of_dicts) == [
+        {"name": "MOEX", "state": "EXECUTED", "date": "2026-03-01-09-00-09"},
+        {"name": "GOLD", "state": "EXECUTED", "date": "2020-01-01-23-00-00"}]
+
+
+@pytest.mark.parametrize("inputed, state, outputed", [([
+                                                           {"name": "MOEX", "state": "CANCELED",
+                                                            "date": "2026-03-01-09-00-09"},
+                                                           {"name": "GOLD", "state": "EXECUTED",
+                                                            "date": "2020-01-01-23-00-00"}], "EXECUTED",
+                                                       [{"name": "GOLD", "state": "EXECUTED",
+                                                         "date": "2020-01-01-23-00-00"}]), ([{}], "NOTHING", []),
+])
+def test_filter_by_state_parametrize(inputed, state, outputed):
+    assert filter_by_state(inputed, state) == outputed
