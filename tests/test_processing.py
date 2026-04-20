@@ -46,3 +46,13 @@ def test_sort_by_date_duplicate():
                {"name": "MOEX", "state": "CANCELED", "date": "2026-04-20-12-00-00"},
                {"name": "AAPL", "state": "CANCELED", "date": "2025-01-20-23-00-00"},
                {"name": "GOLD", "state": "EXECUTED", "date": "2025-01-20-23-00-00"}]
+
+
+def test_sort_by_date_uncorrect():
+    assert sort_by_date([{"name": "AAPL", "state": "CANCELED", "date": "2025-13-46-3000-00-00"},
+                         {"name": "MOEX", "state": "CANCELED", "date": "2026-00-12-00-00"},
+                         {"name": "GOLD", "state": "EXECUTED", "date": "01-20-23-00-00"}]) == [
+               {"name": "MOEX", "state": "CANCELED", "date": "2026-00-12-00-00"},
+               {"name": "AAPL", "state": "CANCELED", "date": "2025-13-46-3000-00-00"},
+               {"name": "GOLD", "state": "EXECUTED", "date": "01-20-23-00-00"},
+           ]
