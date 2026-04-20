@@ -1,6 +1,3 @@
-from typing import Union
-
-
 def get_mask_card_number(card_num: str) -> str:
     """Функция маскировки номера банковской карты"""
     if len(card_num) != 16:
