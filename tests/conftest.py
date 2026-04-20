@@ -2,15 +2,15 @@ import pytest
 
 
 @pytest.fixture
-def card_num() -> int:
+def card_num() -> str:
     """Фикстура для проверки номера карты в test_get_mask_card_number"""
-    return 1234567887654321
+    return "1234567887654321"
 
 
 @pytest.fixture
-def card_id() -> int:
+def card_id() -> str:
     """Фикстура для проверки номера счета в get_mask_account"""
-    return 12345678876543211234
+    return "12345678876543211234"
 
 
 @pytest.fixture

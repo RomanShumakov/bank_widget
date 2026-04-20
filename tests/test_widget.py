@@ -1,5 +1,3 @@
-from typing import Union
-
 import pytest
 
 from src.widget import get_date, mask_account_card
@@ -18,7 +16,7 @@ from src.widget import get_date, mask_account_card
         ("Счет 11111222223333344444", "Счет **4444"),
     ],
 )
-def test_mask_account_card(card_id: Union[int, str], result: str) -> None:
+def test_mask_account_card(card_id: int | str, result: str) -> None:
     """Функция тестирует mask_account_card с помощью параметризации нескольких входных и выходных данных"""
     assert mask_account_card(card_id) == result
 
