@@ -52,7 +52,7 @@ def test_filter_by_currency_usd(dicts_list):
         }
 
 def test_filter_by_currency_rub(dicts_list):
-    generator = filter_by_currency(dicts_list, "руб.")
+    generator = filter_by_currency(dicts_list, "RUB")
     assert next(generator) == {
             "id": 873106923,
             "state": "EXECUTED",
