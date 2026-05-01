@@ -68,3 +68,19 @@ def test_filter_by_currency_rub(dicts_list):
             "from": "Счет 44812258784861134719",
             "to": "Счет 74489636417521191160"
         }
+    assert next(generator) == {
+            "id": 594226727,
+            "state": "CANCELED",
+            "date": "2018-09-12T21:27:25.241689",
+            "operationAmount": {
+                "amount": "67314.70",
+                "currency": {
+                    "name": "руб.",
+                    "code": "RUB"
+                }
+            },
+            "description": "Перевод организации",
+            "from": "Visa Platinum 1246377376343588",
+            "to": "Счет 14211924144426031657"
+        }
+
