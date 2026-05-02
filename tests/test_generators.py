@@ -100,3 +100,11 @@ def test_transaction_descriptions(dicts_list):
     assert next(generator) == "Перевод со счета на счет"
     assert next(generator) == "Перевод со счета на счет"
     assert next(generator) == "Перевод с карты на карту"
+
+def test_transaction_descriptions_empty():
+    generator = transaction_descriptions([{}])
+    assert next(generator) == {}
+
+def test_transaction_descriptions_uncorrect_format(list_of_dicts):
+    generator = transaction_descriptions(list_of_dicts)
+    assert next(generator) == {}

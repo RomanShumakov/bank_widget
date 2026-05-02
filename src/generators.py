@@ -13,9 +13,12 @@ def filter_by_currency(transactions: list[dict], code: str = "USD"):
         yield {}
 
 
-def transaction_descriptions(transactions: list[dict], code: str = "USD"):
+def transaction_descriptions(transactions: list[dict]):
     for transaction in transactions:
-        yield transaction["description"]
+        if transaction == {}:
+            yield {}
+        else:
+            yield transaction.get("description", {})
 
 
 def card_number_generator(start: int, stop: int):
