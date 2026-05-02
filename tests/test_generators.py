@@ -1,6 +1,5 @@
-from src.generators import filter_by_currency, transaction_descriptions
-#, card_number_generator)
-#import pytest
+from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
+import pytest
 
 
 def test_filter_by_currency_usd(dicts_list):
@@ -108,3 +107,34 @@ def test_transaction_descriptions_empty():
 def test_transaction_descriptions_uncorrect_format(list_of_dicts):
     generator = transaction_descriptions(list_of_dicts)
     assert next(generator) == {}
+
+def test_card_number_generator():
+    generator = card_number_generator(10001, 10003)
+    assert next(generator) == "0000 0000 0001 0001"
+    assert next(generator) == "0000 0000 0001 0002"
+    assert next(generator) == "0000 0000 0001 0003"
+    try:
+        next(generator)
+    except:
+        StopIteration
+
+def test_card_number_generator_max_value():
+    generator = card_number_generator(9999999999999997, 10000000000000003)
+    assert next(generator) == "9999 9999 9999 9997"
+    assert next(generator) == "9999 9999 9999 9998"
+    assert next(generator) == "9999 9999 9999 9999"
+    with pytest.raises(ValueError) as e:
+        next(generator)
+    assert str(e.value) == "Превышен лимит номера карты"
+
+def test_card_number_generator_zero_value():
+    generator = card_number_generator(0, 2)
+    with pytest.raises(ValueError) as e:
+        next(generator)
+    assert str(e.value) == "Не допустимый формат номера карты"
+
+def test_card_number_generator_minus_value():
+    generator = card_number_generator(-2, 2)
+    with pytest.raises(ValueError) as e:
+        next(generator)
+    assert str(e.value) == "Не допустимый формат номера карты"

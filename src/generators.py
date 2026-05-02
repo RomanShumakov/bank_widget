@@ -25,6 +25,10 @@ def card_number_generator(start: int, stop: int):
     begin = start
     while begin <= stop:
         result = "0000000000000000" + str(begin)
+        if begin <= 0:
+            raise ValueError("Не допустимый формат номера карты")
+        if begin >= 10000000000000000:
+            raise ValueError("Превышен лимит номера карты")
 
         while len(result) > 16:
             update_result = result[1:]
