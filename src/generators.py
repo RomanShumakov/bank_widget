@@ -1,11 +1,22 @@
 def filter_by_currency(transactions: list[dict], code: str = "USD"):
+    transaction_count = 0
     for transaction in transactions:
-        if transaction["operationAmount"]["currency"]["code"] == code:
+
+        if transaction == {}:
+            transaction_count += 1
+            yield {}
+        if transaction.get("operationAmount") and transaction.get("operationAmount").get(
+                "currency") and transaction.get("operationAmount").get("currency").get("code") == code:
+            transaction_count += 1
             yield transaction
+    if transaction_count == 0:
+        yield {}
+
 
 def transaction_descriptions(transactions: list[dict], code: str = "USD"):
     for transaction in transactions:
         yield transaction["description"]
+
 
 def card_number_generator(start: int, stop: int):
     begin = start
@@ -15,5 +26,5 @@ def card_number_generator(start: int, stop: int):
         while len(result) > 16:
             update_result = result[1:]
             result = "" + update_result
-        yield result[:4] + " " + result[4:8] + " " + result[8:12] + " " +result[12:]
+        yield result[:4] + " " + result[4:8] + " " + result[8:12] + " " + result[12:]
         begin += 1

@@ -84,3 +84,12 @@ def test_filter_by_currency_rub(dicts_list):
             "to": "Счет 14211924144426031657"
         }
 
+
+def test_filter_by_currency_wrong_key(dicts_list):
+    generator = filter_by_currency(dicts_list, "empty")
+    assert next(generator) == {}
+
+def test_filter_by_currency_empty():
+    generator = filter_by_currency([{}, {}])
+    assert next(generator) == {}
+    assert next(generator) == {}
