@@ -109,8 +109,8 @@ def test_card_number_generator() -> None:
     assert next(generator) == "0000 0000 0001 0003"
     try:
         next(generator)
-    except:
-        StopIteration
+    except StopIteration:
+        pass
 
 
 def test_card_number_generator_max_value() -> None:

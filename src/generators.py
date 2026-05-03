@@ -2,7 +2,8 @@ from typing import Generator
 
 
 def filter_by_currency(transactions: list[dict], code: str = "USD") -> Generator[dict]:
-    """Функция возврата итератора, поочередно выдающего транзакции, где валюта операции соответствует заданной (например, USD)"""
+    """Функция возврата итератора, поочередно выдающего транзакции,
+    где валюта операции соответствует заданной (например, USD)"""
     transaction_count = 0
     for transaction in transactions:
 
