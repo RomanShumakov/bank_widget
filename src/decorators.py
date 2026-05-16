@@ -1,5 +1,5 @@
-from time import time
 from functools import wraps
+from time import time
 
 
 def log(filename=None):
@@ -16,16 +16,23 @@ def log(filename=None):
 
             time_end = time()
             if not filename and not error_message:
-                print(f"Функция {func.__name__} успешно завершила выполнение за {time_end - time_begin} сек.: {result}")
+                print(
+                    f"Функция {func.__name__} успешно завершила выполнение за {time_end - time_begin} сек.: {result}"
+                )
             elif not filename and error_message:
                 print(f"{error_message}. Время выполнения: {time_end - time_begin}")
             elif filename and not error_message:
-                with open(filename, "a", encoding='utf-8') as file:
-                    file.write(f"Функция {func.__name__} успешно завершила выполнение за {time_end - time_begin} сек.: {result}" + "\n")
+                with open(filename, "a", encoding="utf-8") as file:
+                    file.write(
+                        f"Функция {func.__name__} успешно завершила выполнение за "
+                        f"{time_end - time_begin} сек.: {result}" + "\n"
+                    )
             else:
-                with open(filename, "a", encoding='utf-8') as file:
+                with open(filename, "a", encoding="utf-8") as file:
                     file.write(f"{error_message}. Время выполнения: {time_end - time_begin}" + "\n")
 
             return result
+
         return inner
+
     return wrapper
