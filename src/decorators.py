@@ -1,11 +1,14 @@
 from functools import wraps
 from time import time
+from typing import Any, Callable
 
 
-def log(filename=None):
-    def wrapper(func):
+def log(filename: str | None = None) -> Callable:
+    """Декоратор для вывода логов с результатами работы функции в консоль или файл"""
+
+    def wrapper(func: Callable) -> Callable:
         @wraps(func)
-        def inner(*args, **kwargs):
+        def inner(*args: Any, **kwargs: Any) -> Any:
             time_begin = time()
             error_message = None
             try:
@@ -27,7 +30,7 @@ def log(filename=None):
                         f"Функция {func.__name__} успешно завершила выполнение за "
                         f"{time_end - time_begin} сек.: {result}" + "\n"
                     )
-            else:
+            elif filename and error_message:
                 with open(filename, "a", encoding="utf-8") as file:
                     file.write(f"{error_message}. Время выполнения: {time_end - time_begin}" + "\n")
 
