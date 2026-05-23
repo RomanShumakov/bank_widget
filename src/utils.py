@@ -1,11 +1,9 @@
 import json
 import os
 
-script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'data/operations.json'))
-
-def json_reader(path_to_file=script_path):
+def json_reader(path_to_file=os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'data/operations.json'))):
     try:
-        with open(path_to_file) as f:
+        with open(path_to_file, encoding='utf-8') as f:
             response = json.load(f)
         if type(response) != list:
             return []
