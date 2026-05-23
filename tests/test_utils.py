@@ -42,8 +42,8 @@ def test_json_reader_no_path():
     "to": "Счет 64686473678894779589"
             } in result
 
-@patch('builtins.open', new_callable=mock_open, read_data='{}')
-def test_json_reader_another_data(mock_file):
+@patch('builtins.open', new_callable=mock_open, read_data='')
+def test_json_reader_uncorrect_data(mock_file):
     result = json_reader()
     assert result == []
 
@@ -51,4 +51,14 @@ def test_json_reader_another_data(mock_file):
 def test_json_reader_no_data(mock_file):
     result = json_reader()
     assert result == []
+
+@patch('builtins.open', new_callable=mock_open, read_data='{}')
+def test_json_reader_another_type(mock_file):
+    result = json_reader()
+    assert result == []
+
+@patch('builtins.open', new_callable=mock_open, read_data='[{}]')
+def test_json_reader_empty_transaction(mock_file):
+    result = json_reader()
+    assert result == [{}]
 

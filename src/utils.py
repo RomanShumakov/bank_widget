@@ -1,5 +1,7 @@
 import json
 import os
+from json import JSONDecodeError
+
 
 def json_reader(path_to_file=os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'data/operations.json'))):
     try:
@@ -9,4 +11,6 @@ def json_reader(path_to_file=os.path.abspath(os.path.join(os.path.dirname(__file
             return []
         return response
     except FileNotFoundError:
+        return []
+    except JSONDecodeError:
         return []
