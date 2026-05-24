@@ -1,8 +1,11 @@
-import requests
-from dotenv import load_dotenv
 import os
 
-def transaction_in_rub(transaction):
+import requests
+from dotenv import load_dotenv
+
+
+def transaction_in_rub(transaction: dict) -> float | str:
+    """Функция получения суммы транзакции в рублях с использованием внешнего API-сервиса"""
     load_dotenv()
     api_key = os.getenv("API_KEY")
     if (type(transaction) != dict) or transaction == {}:
@@ -12,7 +15,10 @@ def transaction_in_rub(transaction):
     else:
         currency = "uncorrect income data"
     amount = transaction.get("operationAmount", {}).get("amount", "uncorrect income data")
-    response = requests.get(f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={currency}&amount={amount}", headers={"apikey": api_key})
+    response = requests.get(
+        f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={currency}&amount={amount}",
+        headers={"apikey": api_key},
+    )
 
     total_rub_amount = response.json().get("result", "uncorrect payload data")
     return total_rub_amount
