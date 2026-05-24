@@ -2,7 +2,6 @@ import os
 from unittest.mock import Mock, patch
 
 import pytest
-import requests
 from dotenv import load_dotenv
 
 from src.external_api import transaction_in_rub
@@ -13,7 +12,7 @@ api_key = os.getenv("API_KEY")
 
 @patch("requests.get")
 def test_transaction_in_rub_success(mock_get: Mock) -> None:
-    """Функция проверки получения суммы транзакции с переводом from USD to RUB с имитацией подключения к внешнему API"""
+    """Проверка получения суммы транзакции с переводом from USD to RUB с имитацией подключения к внешнему API"""
     mock_get.return_value.json.return_value = {
         "success": True,
         "query": {"from": "USD", "to": "RUB", "amount": 8221.37},

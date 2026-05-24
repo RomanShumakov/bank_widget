@@ -8,7 +8,7 @@ def transaction_in_rub(transaction: dict[str | dict]) -> float | str:
     """Функция получения суммы транзакции в рублях с использованием внешнего API-сервиса"""
     load_dotenv()
     api_key = os.getenv("API_KEY")
-    if (type(transaction) != dict) or transaction == {}:
+    if not isinstance(transaction, dict) or transaction == {}:
         return "uncorrect income data"
     if transaction.get("operationAmount") and transaction["operationAmount"].get("currency"):
         currency = transaction["operationAmount"]["currency"].get("code", "uncorrect income data")
