@@ -9,5 +9,5 @@ def transaction_in_rub(transaction):
     amount = transaction.get("operationAmount").get("amount")
     response = requests.get(f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={currency}&amount={amount}", headers={"apikey": api_key})
 
-    total_rub_amount = response.json().get("result")
+    total_rub_amount = response.json().get("result", "uncorrect payload data")
     return total_rub_amount
