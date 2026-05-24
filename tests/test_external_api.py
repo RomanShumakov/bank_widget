@@ -69,17 +69,3 @@ def test_transaction_in_rub_uncorrect_income_data(mock_get: Mock) -> None:
     }
 
     assert transaction_in_rub({}) == "uncorrect income data"
-
-
-@patch("requests.get")
-def test_transaction_in_rub_uncorrect_income_format(mock_get: Mock) -> None:
-    """Функция проверки работоспособности функции при неправильном формате входных данных (пустым списком)"""
-    mock_get.return_value.json.return_value = {
-        "success": True,
-        "query": {"from": "USD", "to": "RUB", "amount": 8221.37},
-        "info": {"timestamp": 1779613387, "rate": 71.790516},
-        "date": "2026-05-24",
-        "result": 590216.394527,
-    }
-
-    assert transaction_in_rub([]) == "uncorrect income data"

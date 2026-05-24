@@ -4,7 +4,7 @@ import requests
 from dotenv import load_dotenv
 
 
-def transaction_in_rub(transaction: dict) -> float | str:
+def transaction_in_rub(transaction: dict[str | dict]) -> float | str:
     """Функция получения суммы транзакции в рублях с использованием внешнего API-сервиса"""
     load_dotenv()
     api_key = os.getenv("API_KEY")
