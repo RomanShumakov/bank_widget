@@ -1,14 +1,18 @@
 import json
-import os
 import logging
+import os
 from json import JSONDecodeError
 
-logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                    filename=os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "logs/utils.log")),
-                    filemode='w', encoding="utf-8")
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    filename=os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "logs/utils.log")),
+    filemode="w",
+    encoding="utf-8",
+)
 
 utils_logger = logging.getLogger(__name__)
+
 
 def json_reader(
     path_to_file: str = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data/operations.json"))
@@ -26,8 +30,10 @@ def json_reader(
         return response
 
     except FileNotFoundError:
-        utils_logger.error(f"json-файл не найден по указанному пути: {path_to_file}. Продолжение работы с пустым файлом.")
+        utils_logger.error(
+            f"json-файл не найден по указанному пути: {path_to_file}. Продолжение работы с пустым файлом."
+        )
         return []
     except JSONDecodeError:
-        utils_logger.error(f"json-файл поврежден или неправильно прочитан. Продолжение работы с пустым файлом.")
+        utils_logger.error("json-файл поврежден или неправильно прочитан. Продолжение работы с пустым файлом.")
         return []
