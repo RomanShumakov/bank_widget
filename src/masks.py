@@ -2,7 +2,7 @@ import logging
 import os
 
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.DEBUG,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     filename=os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "logs/masks.log")),
     filemode="w",

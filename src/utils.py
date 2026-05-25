@@ -4,7 +4,7 @@ import os
 from json import JSONDecodeError
 
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.DEBUG,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     filename=os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "logs/utils.log")),
     filemode="w",
