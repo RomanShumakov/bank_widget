@@ -314,7 +314,7 @@ excel_reader(C:\Users\Temp0\PycharmProjects\testPoetryProject\data\transactions_
 ```
 *На выходе получаем таблицу из файла "transactions_excel.xlsx" в формате, пригодном для ее дальнейшей обработки*
 
-**Пример получения первых 5 строчек из script-файла "transactions.csv"**
+**Пример получения первых 5 строчек из script-файла "transactions_excel.xlsx"**
 
 Входные данные:
 ```
