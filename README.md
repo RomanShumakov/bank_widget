@@ -272,6 +272,64 @@ error_function()
 error_function error: ValueError. Inputs: (), {}"
 Время выполнения: 5,05823
 ```
+### Модуль csv_excel_readers.py
+В данном модуле реализованы функции чтения файлов форматов CSV и Excel.
+#### Функция csv_reader
+Функция реализует чтение файлов в формате CSV. Для ее использования
+необходимо вызвать функцию с параметром, являющийся полным путем к CSV-файлу. По умолчанию,
+этот параметр установлен как "data/transactions.csv" в корне проекта.
+
+**Пример использования csv_reader**
+Входные данные:
+```
+csv_reader(C:\Users\Temp0\PycharmProjects\testPoetryProject\data\transactions.csv)
+```
+*На выходе получаем таблицу из файла "transactions.csv" в формате, пригодном для ее дальнейшей обработки*
+
+**Пример получения первых 5 строчек из script-файла "transactions.csv"**
+
+Входные данные:
+```
+csv_reader()
+for row in csv_reader()[:5]:
+    print(row)
+```
+Выходные данные:
+```
+{'id;state;date;amount;currency_name;currency_code;from;to;description': '650703;EXECUTED;2023-09-05T11:30:32Z;16210;Sol;PEN;Счет 58803664561298323391;Счет 39745660563456619397;Перевод организации'}
+{'id;state;date;amount;currency_name;currency_code;from;to;description': '3598919;EXECUTED;2020-12-06T23:00:58Z;29740;Peso;COP;Discover 3172601889670065;Discover 0720428384694643;Перевод с карты на карту'}
+{'id;state;date;amount;currency_name;currency_code;from;to;description': '593027;CANCELED;2023-07-22T05:02:01Z;30368;Shilling;TZS;Visa 1959232722494097;Visa 6804119550473710;Перевод с карты на карту'}
+{'id;state;date;amount;currency_name;currency_code;from;to;description': '366176;EXECUTED;2020-08-02T09:35:18Z;29482;Rupiah;IDR;Discover 0325955596714937;Visa 3820488829287420;Перевод с карты на карту'}
+{'id;state;date;amount;currency_name;currency_code;from;to;description': '5380041;CANCELED;2021-02-01T11:54:58Z;23789;Peso;UYU;;Счет 23294994494356835683;Открытие вклада'}
+```
+#### Функция excel_reader
+Функция реализует чтение файлов в формате Excel. Для ее использования
+необходимо вызвать функцию с параметром, являющийся полным путем к CSV-файлу. По умолчанию,
+этот параметр установлен как "data/transactions_excel.xlsx" в корне проекта.
+
+**Пример использования excel_reader**
+Входные данные:
+```
+excel_reader(C:\Users\Temp0\PycharmProjects\testPoetryProject\data\transactions_excel.xlsx)
+```
+*На выходе получаем таблицу из файла "transactions_excel.xlsx" в формате, пригодном для ее дальнейшей обработки*
+
+**Пример получения первых 5 строчек из script-файла "transactions_excel.xlsx"**
+
+Входные данные:
+```
+excel_reader()
+for row in excel_reader()[:5]:
+    print(row)
+```
+Выходные данные:
+```
+{'id': 650703.0, 'state': 'EXECUTED', 'date': '2023-09-05T11:30:32Z', 'amount': 16210.0, 'currency_name': 'Sol', 'currency_code': 'PEN', 'from': 'Счет 58803664561298323391', 'to': 'Счет 39745660563456619397', 'description': 'Перевод организации'}
+{'id': 3598919.0, 'state': 'EXECUTED', 'date': '2020-12-06T23:00:58Z', 'amount': 29740.0, 'currency_name': 'Peso', 'currency_code': 'COP', 'from': 'Discover 3172601889670065', 'to': 'Discover 0720428384694643', 'description': 'Перевод с карты на карту'}
+{'id': 593027.0, 'state': 'CANCELED', 'date': '2023-07-22T05:02:01Z', 'amount': 30368.0, 'currency_name': 'Shilling', 'currency_code': 'TZS', 'from': 'Visa 1959232722494097', 'to': 'Visa 6804119550473710', 'description': 'Перевод с карты на карту'}
+{'id': 366176.0, 'state': 'EXECUTED', 'date': '2020-08-02T09:35:18Z', 'amount': 29482.0, 'currency_name': 'Rupiah', 'currency_code': 'IDR', 'from': 'Discover 0325955596714937', 'to': 'Visa 3820488829287420', 'description': 'Перевод с карты на карту'}
+{'id': 5380041.0, 'state': 'CANCELED', 'date': '2021-02-01T11:54:58Z', 'amount': 23789.0, 'currency_name': 'Peso', 'currency_code': 'UYU', 'from': nan, 'to': 'Счет 23294994494356835683', 'description': 'Открытие вклада'}
+```
 
 ## Тестировка
 ### Имеется возможность тестирования программы для увеличения надежности кода, улучшения устойчивости к ошибкам.
