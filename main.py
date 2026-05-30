@@ -1,8 +1,8 @@
+from src.csv_excel_readers import csv_reader, excel_reader
 from src.generators import filter_by_currency
+from src.processing import filter_by_state, sort_by_date
 from src.re_search import process_bank_search
 from src.utils import json_reader
-from src.csv_excel_readers import csv_reader, excel_reader
-from src.processing import filter_by_state, sort_by_date
 from src.widget import get_date, mask_account_card
 
 if __name__ == "__main__":
@@ -50,7 +50,6 @@ if __name__ == "__main__":
         else:
             print(f"Статус операции {input_word} недоступен.")
 
-
     while True:
         user_input = input("Отсортировать операции по дате? Да/Нет\n").lower()
         if user_input == "нет":
@@ -68,7 +67,6 @@ if __name__ == "__main__":
                 print("Повторите ввод: по возрастанию / по убыванию")
         else:
             print("Повторите ввод")
-
 
     while True:
         user_input = input("Выводить только рублевые транзакции? Да/Нет\n").lower()
@@ -103,17 +101,3 @@ if __name__ == "__main__":
             print(get_date(transaction["date"]), " ", transaction["description"])
             print(mask_account_card(transaction["from"]))
             print(mask_account_card(transaction["to"]))
-
-
-
-
-
-
-
-
-
-
-
-
-
-

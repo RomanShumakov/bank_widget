@@ -1,9 +1,11 @@
-from src.re_search import process_bank_search, process_bank_operations
+from src.re_search import process_bank_operations, process_bank_search
 
 
-def test_process_bank_search(dicts_list):
+def test_process_bank_search(dicts_list: list[dict]) -> None:
+    """Функция тестирования работоспособности функции process_bank_search"""
     result = process_bank_search(dicts_list, "Перевод со счета на счет")
-    assert result == [{
+    assert result == [
+        {
             "id": 142264268,
             "state": "EXECUTED",
             "date": "2019-04-04T23:20:05.206878",
@@ -20,9 +22,11 @@ def test_process_bank_search(dicts_list):
             "description": "Перевод со счета на счет",
             "from": "Счет 44812258784861134719",
             "to": "Счет 74489636417521191160",
-        }
+        },
     ]
 
-def test_process_bank_operations(dicts_list):
+
+def test_process_bank_operations(dicts_list: list[dict]) -> None:
+    """Функция тестирования работоспособности функции process_bank_operations"""
     result = process_bank_operations(dicts_list, ["Перевод с карты на карту", "Перевод организации"])
-    assert result == {'Перевод организации': 2, 'Перевод с карты на карту': 1}
+    assert result == {"Перевод организации": 2, "Перевод с карты на карту": 1}
